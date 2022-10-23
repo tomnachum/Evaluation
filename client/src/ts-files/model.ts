@@ -18,7 +18,6 @@ class Model {
     if (gluten) {
       url += `&gluten=True`;
     }
-    console.log(url);
     return url;
   }
 
