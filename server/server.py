@@ -27,7 +27,7 @@ def get_html():
 
 
 @app.get("/recipes", status_code=status.HTTP_200_OK)
-async def get_recipes(request: Request, response: Response, contains=None):
+async def get_recipes(response: Response, contains=None, dairy=False, gluten=False):
     if contains is None:
         response.status_code = status.HTTP_404_NOT_FOUND
         return {"Error": {"details": "Query param 'contains' is mandatory."}}
@@ -37,10 +37,10 @@ async def get_recipes(request: Request, response: Response, contains=None):
         return {
             "Error": {"details": f"There are no recipes which contains '{contains}'"}
         }
-    sensitivities_request = await request.json()
-    sensitivities = sensitivities_request["sensitivities"]
-    if sensitivities != []:
-        recipes = filter_recipes_by_sensitivities(recipes, sensitivities)
+    dairy = True if dairy == "True" else False
+    gluten = True if gluten == "True" else False
+    if dairy or gluten:
+        recipes = filter_recipes_by_sensitivities(recipes, dairy, gluten)
     return {"total": len(recipes), f"recipes that contains {contains}": recipes}
 
 
