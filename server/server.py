@@ -27,19 +27,18 @@ def get_html():
 
 
 @app.get("/recipes", status_code=status.HTTP_200_OK)
-def get_recipes(response: Response, contains=None):
+def get_recipes(response: Response, contains=None, sensitivity=None):
     if contains is None:
         response.status_code = status.HTTP_404_NOT_FOUND
         return {"Error": {"details": "Query param 'contains' is mandatory."}}
-    recipes_response = requests.get(
-        f"https://recipes-goodness.herokuapp.com/recipes/{contains}"
-    ).json()
-    recipes = recipes_response["results"]
+    recipes = get_recipes_from_api(contains)
     if not recipes:
         response.status_code = status.HTTP_404_NOT_FOUND
         return {
             "Error": {"details": f"There are no recipes which contains '{contains}'"}
         }
+    if sensitivity is not None:
+        recipes = filter_recipes_by_sensitivity(recipes, sensitivity)
     return {f"recipes that contains {contains}": recipes}
 
 
