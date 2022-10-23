@@ -27,7 +27,7 @@ def get_html():
 
 
 @app.get("/recipes", status_code=status.HTTP_200_OK)
-def get_recipes(response: Response, contains=None, sensitivity=None):
+async def get_recipes(request: Request, response: Response, contains=None):
     if contains is None:
         response.status_code = status.HTTP_404_NOT_FOUND
         return {"Error": {"details": "Query param 'contains' is mandatory."}}
@@ -37,9 +37,11 @@ def get_recipes(response: Response, contains=None, sensitivity=None):
         return {
             "Error": {"details": f"There are no recipes which contains '{contains}'"}
         }
-    if sensitivity is not None:
-        recipes = filter_recipes_by_sensitivity(recipes, sensitivity)
-    return {f"recipes that contains {contains}": recipes}
+    sensitivities_request = await request.json()
+    sensitivities = sensitivities_request["sensitivities"]
+    if sensitivities != []:
+        recipes = filter_recipes_by_sensitivities(recipes, sensitivities)
+    return {"total": len(recipes), f"recipes that contains {contains}": recipes}
 
 
 # ----------------------------- a request with a body
@@ -62,4 +64,4 @@ def get_recipes(response: Response, contains=None, sensitivity=None):
 #     return tasks[task_id]
 
 if __name__ == "__main__":
-    uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("server:app", host="0.0.0.0", port=8045, reload=True)

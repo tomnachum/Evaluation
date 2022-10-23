@@ -22,8 +22,10 @@ def is_allowed(recipe, dietary_restrictions):
     return not any([ingredient in dietary_restrictions for ingredient in ingredients])
 
 
-def filter_recipes_by_sensitivity(recipes, sensitivity):
-    dietary_restrictions = get_dietary_restrictions(sensitivity)
+def filter_recipes_by_sensitivities(recipes, sensitivities):
+    dietary_restrictions = []
+    for sensitivity in sensitivities:
+        dietary_restrictions += get_dietary_restrictions(sensitivity)
     if not dietary_restrictions:
         return recipes
     return list(
