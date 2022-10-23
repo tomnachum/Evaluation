@@ -64,4 +64,4 @@ async def get_recipes(response: Response, contains=None, dairy=False, gluten=Fal
 #     return tasks[task_id]
 
 if __name__ == "__main__":
-    uvicorn.run("server:app", host="0.0.0.0", port=8048, reload=True)
+    uvicorn.run("server:app", host="0.0.0.0", port=8049, reload=True)

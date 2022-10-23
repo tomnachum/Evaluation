@@ -1,6 +1,5 @@
 class Renderer {
   public render(recipes: any) {
-    console.log(recipes);
     this.handlebarsHelper(".recipes-container", "#recipes-template", {
       recipes,
     });
