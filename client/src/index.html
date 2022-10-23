@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyProject</title>
+    <link rel="stylesheet" href="client/src/style.css" />
+  </head>
+  <body>
+    <script id="players-template" type="text/x-handlebars-template">
+      {{#each players}}
+        <div>
+          <p>{{name}}</p>
+        </div>
+      {{/each}}
+    </script>
+
+    <div class="container">
+      <h1>Hello World</h1>
+    </div>
+    <div class="players-container"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="client/build/model.js"></script>
+    <script src="client/build/renderer.js"></script>
+    <script src="client/build/controller.js"></script>
+  </body>
+</html>
