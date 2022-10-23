@@ -10,15 +10,21 @@ class Recipe {
 class Model {
   private recipes: Recipe[] = [];
 
-  async fetchRecipes(ingredient: any, dairy: boolean, gluten: boolean) {
-    let request = `/recipes?contains=${ingredient}`;
+  private makeRequestUrl(ingredient: any, dairy: boolean, gluten: boolean) {
+    let url = `/recipes?contains=${ingredient}`;
     if (dairy) {
-      request += `&dairy=True`;
+      url += `&dairy=True`;
     }
     if (gluten) {
-      request += `&gluten=True`;
+      url += `&gluten=True`;
     }
-    let response = await $.get(request);
+    console.log(url);
+    return url;
+  }
+
+  async fetchRecipes(ingredient: any, dairy: boolean, gluten: boolean) {
+    let url = this.makeRequestUrl(ingredient, dairy, gluten);
+    let response = await $.get(url);
     let recipes = response["recipes"];
     this.recipes = recipes.map(
       (recipe: Recipe) =>
