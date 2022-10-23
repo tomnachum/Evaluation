@@ -26,9 +26,21 @@ def get_html():
     return FileResponse(HTML_DIR)
 
 
-@app.get("/check")
-def get_players():
-    return {"check": "OK"}
+@app.get("/recipes", status_code=status.HTTP_200_OK)
+def get_recipes(response: Response, contains=None):
+    if contains is None:
+        response.status_code = status.HTTP_404_NOT_FOUND
+        return {"Error": {"details": "Query param 'contains' is mandatory."}}
+    recipes_response = requests.get(
+        f"https://recipes-goodness.herokuapp.com/recipes/{contains}"
+    ).json()
+    recipes = recipes_response["results"]
+    if not recipes:
+        response.status_code = status.HTTP_404_NOT_FOUND
+        return {
+            "Error": {"details": f"There are no recipes which contains '{contains}'"}
+        }
+    return {f"recipes that contains {contains}": recipes}
 
 
 # ----------------------------- a request with a body
@@ -51,4 +63,4 @@ def get_players():
 #     return tasks[task_id]
 
 if __name__ == "__main__":
-    uvicorn.run("server:app", host="0.0.0.0", port=8042, reload=True)
+    uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)
