@@ -1,7 +1,8 @@
 class Renderer {
-  public render(data: any) {
-    this.handlebarsHelper(".players-container", "#players-template", {
-      players: data,
+  public render(recipes: any) {
+    console.log(recipes);
+    this.handlebarsHelper(".recipes-container", "#recipes-template", {
+      recipes,
     });
   }
 

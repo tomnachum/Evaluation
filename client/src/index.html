@@ -8,18 +8,45 @@
     <link rel="stylesheet" href="client/src/style.css" />
   </head>
   <body>
-    <script id="players-template" type="text/x-handlebars-template">
-      {{#each players}}
-        <div>
-          <p>{{name}}</p>
+    <script id="recipes-template" type="text/x-handlebars-template">
+      {{#each recipes}}
+        <div class="recipe">
+          <div class="center">
+            <img src="{{thumbnail}}" alt="" class="recipe-img" />
+          </div>
+          <div class="center">
+            <h2>{{title}}</h2>
+          </div>
+          <div class="center">
+          <h3>Ingredients</h3>
+          </div>
+          <div class="center">
+            <ul>
+              {{#each ingredients}}
+                <li>{{this}}</li>
+              {{/each}}
+            </ul>
+          </div>
+          </div>
         </div>
       {{/each}}
     </script>
 
     <div class="container">
-      <h1>Hello World</h1>
+      <div class="search-bar">
+        <div class="center">
+          <label for="gluten">Gluten Free</label>
+          <input id="gluten" type="checkbox" />
+        </div>
+        <div class="center">
+          <label for="gluten">Dairy Free</label>
+          <input id="dairy" type="checkbox" />
+        </div>
+        <input id="ingredient" type="text" placeholder="Enter ingredient" />
+        <button id="search-btn">Search</button>
+      </div>
     </div>
-    <div class="players-container"></div>
+    <div class="recipes-container"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
     <script

@@ -1,3 +1,12 @@
+html {
+  /* background: url("https://images.cdn4.stockunlimited.net/preview1300/food-background_1305818.jpg")
+    no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; */
+}
+
 .center {
   display: flex;
   justify-content: center;
@@ -6,4 +15,31 @@
 
 .hide {
   display: none !important;
+}
+
+.search-bar {
+  display: grid;
+  grid-template-columns: 2fr 2fr 20fr 1fr;
+  margin: 30px;
+}
+
+input,
+button {
+  padding: 10px;
+}
+
+.recipes-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.recipe {
+  border: 2px solid grey;
+  margin: 20px;
+  padding: 10px;
+  background-color: antiquewhite;
+}
+
+.recipe-img {
+  width: 300px;
 }

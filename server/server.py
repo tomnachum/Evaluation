@@ -41,7 +41,7 @@ async def get_recipes(response: Response, contains=None, dairy=False, gluten=Fal
     gluten = True if gluten == "True" else False
     if dairy or gluten:
         recipes = filter_recipes_by_sensitivities(recipes, dairy, gluten)
-    return {"total": len(recipes), f"recipes that contains {contains}": recipes}
+    return {"recipes": recipes}
 
 
 # ----------------------------- a request with a body
@@ -64,4 +64,4 @@ async def get_recipes(response: Response, contains=None, dairy=False, gluten=Fal
 #     return tasks[task_id]
 
 if __name__ == "__main__":
-    uvicorn.run("server:app", host="0.0.0.0", port=8045, reload=True)
+    uvicorn.run("server:app", host="0.0.0.0", port=8048, reload=True)
