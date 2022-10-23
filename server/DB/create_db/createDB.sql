@@ -1,1 +1,1 @@
-CREATE DATABASE poke_tracker
+CREATE DATABASE recipes_app;
