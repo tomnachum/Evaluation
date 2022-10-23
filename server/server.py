@@ -26,9 +26,10 @@ def get_html():
     return FileResponse(HTML_DIR)
 
 
-# @app.get("/check")
-# def get_players():
-#     return {"check": "OK"}
+@app.get("/check")
+def get_players():
+    return {"check": "OK"}
+
 
 # ----------------------------- a request with a body
 # @app.put("/endpoint")
@@ -50,4 +51,4 @@ def get_html():
 #     return tasks[task_id]
 
 if __name__ == "__main__":
-    uvicorn.run("server:app", host="0.0.0.0", port=8041, reload=True)
+    uvicorn.run("server:app", host="0.0.0.0", port=8042, reload=True)
