@@ -1,5 +1,6 @@
 .vscode
 __pycache__/
+code_review.txt
 
 # server
 server/__pycache__/

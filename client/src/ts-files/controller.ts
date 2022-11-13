@@ -9,7 +9,6 @@
     if (ingredient !== "") {
       model.fetchRecipes(ingredient, dairy, gluten).then(function (res) {
         renderer.render(model.getRecipes());
-        $("#ingredient").val("");
       });
     }
   });
