@@ -1,4 +1,4 @@
-# myProject
+# Evaluation
 
 ## Introduction
 
@@ -20,7 +20,7 @@ inside server/DB/create_db
 
 3. run `initialize_tables.py`
 
-### run the server
+### Run the server
 
 1. run `server.py` inside server folder.
 2. on your browser, go to http://localhost:8000/ to see the website.
